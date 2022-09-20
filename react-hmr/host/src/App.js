@@ -1,5 +1,5 @@
-import React, { Suspense } from 'libs/react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'libs/react-router-dom';
+import React, { Suspense } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import Heading from 'remote1/Heading';
 
