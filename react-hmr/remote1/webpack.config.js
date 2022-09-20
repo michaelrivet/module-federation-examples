@@ -4,6 +4,11 @@ const ExternalTemplateRemotesPlugin = require('external-remotes-plugin');
 const path = require('path');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
+const STYLE_LOADER = {
+	test: /\.css$/i,
+	use: ['style-loader', 'css-loader'],
+};
+
 module.exports = {
   entry: './src/index',
   mode: 'development',
@@ -16,6 +21,11 @@ module.exports = {
     static: path.join(__dirname, 'dist'),
     port: 3001,
     liveReload: false,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+    },
   },
   output: {
     publicPath: 'auto',
@@ -32,6 +42,7 @@ module.exports = {
           plugins: [require.resolve('react-refresh/babel')],
         },
       },
+      STYLE_LOADER,
     ],
   },
   plugins: [
@@ -44,6 +55,32 @@ module.exports = {
       },
       remotes: {
         libs: 'libs@[libsUrl]/remoteEntry.js',
+      },
+      shared: {
+        "moment": {
+          // eager: true,
+          singleton: true,
+        },
+        "react": {
+          // eager: true,
+          singleton: true,
+        },
+        "react-dom": {
+          // eager: true,
+          singleton: true,
+        },
+        "react-router-dom": {
+          // eager: true,
+          singleton: true,
+        },
+        'styled-components': {
+          // eager: true,
+          singleton: true,
+        },
+        '@sproutsocial/racine': {
+          // eager: true,
+          singleton: true,
+        },
       },
     }),
     new ExternalTemplateRemotesPlugin(),

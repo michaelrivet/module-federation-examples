@@ -19,5 +19,22 @@
     "webpack-dev-server": "4.9.3",
     "webpack-livereload-plugin": "3.0.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@sproutsocial/racine": "^6.18.0",
+    "@sproutsocial/seeds-border": "^1.1.1",
+    "@sproutsocial/seeds-color": "^1.5.3",
+    "@sproutsocial/seeds-dataviz": "^0.5.4",
+    "@sproutsocial/seeds-depth": "^1.1.4",
+    "@sproutsocial/seeds-motion": "^1.2.2",
+    "@sproutsocial/seeds-networkcolor": "^2.6.2",
+    "@sproutsocial/seeds-space": "^0.4.9",
+    "@sproutsocial/seeds-typography": "^3.1.0",
+    "@sproutsocial/topology": "^1.2.0",
+    "moment": "^2.29.1",
+    "react": "^16.14.0",
+    "react-dates": "^21.8.0",
+    "react-dom": "^16.14.0",
+    "react-router-dom": "^5.3.0",
+    "styled-components": "5.3.0"
+  }
 }
