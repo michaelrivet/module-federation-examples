@@ -52,6 +52,7 @@ module.exports = {
       exposes: {
         './Button': './src/Button',
         './Heading': './src/Heading',
+        './App': './src/App'
       },
       remotes: {
         libs: 'libs@[libsUrl]/remoteEntry.js',
@@ -77,10 +78,13 @@ module.exports = {
           // eager: true,
           singleton: true,
         },
-        '@sproutsocial/racine': {
-          // eager: true,
-          singleton: true,
-        },
+        // Racine can be shared once react-virtualized is bumped
+        // There is a circular dependency in our version
+        // Ian has a PR out https://github.com/sproutsocial/racine/pull/1443
+        // '@sproutsocial/racine': {
+        //   // eager: true,
+        //   singleton: true,
+        // },
       },
     }),
     new ExternalTemplateRemotesPlugin(),

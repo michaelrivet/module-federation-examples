@@ -11,11 +11,12 @@
     "packages": [
       "host",
       "libs",
-      "remote1"
+      "remote1",
+      "remote2"
     ]
   },
   "scripts": {
-    "start": "concurrently \"cd libs; yarn start\" \"cd remote1; yarn start\" \"cd host; yarn start\""
+    "start": "concurrently \"cd libs; yarn start\" \"cd remote1; yarn start\" \"cd remote2; yarn start\" \"cd host; yarn start\""
   },
   "devDependencies": {
     "concurrently": "7.3.0"
