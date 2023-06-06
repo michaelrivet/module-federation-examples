@@ -7,16 +7,13 @@
   "author": "burhanuday",
   "license": "MIT",
   "private": true,
-  "workspaces": {
-    "packages": [
-      "host",
-      "libs",
-      "remote1",
-      "remote2"
-    ]
-  },
+  "workspaces": [
+      "packages/*",
+      "pages/*"
+  ],
   "scripts": {
-    "start": "concurrently \"cd libs; yarn start\" \"cd remote1; yarn start\" \"cd remote2; yarn start\" \"cd host; yarn start\""
+    "start-agent-workspace": "concurrently \"cd pages/agent_workspace; yarn start\"",
+    "start-listening": "concurrently \"cd pages/listening; yarn start\""
   },
   "devDependencies": {
     "concurrently": "7.3.0"

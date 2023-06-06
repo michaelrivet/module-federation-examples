@@ -1,6 +1,4 @@
-const { ModuleFederationPlugin } = require('webpack').container;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExternalTemplateRemotesPlugin = require('external-remotes-plugin');
 const path = require('path');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
@@ -46,48 +44,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new ModuleFederationPlugin({
-      name: 'remote2',
-      filename: 'remoteEntry.js',
-      exposes: {
-        './Button': './src/Button',
-        './Heading': './src/Heading',
-        './App': './src/App',
-      },
-      remotes: {
-        libs: 'libs@[libsUrl]/remoteEntry.js',
-      },
-      shared: {
-        "moment": {
-          // eager: true,
-          singleton: true,
-        },
-        "react": {
-          // eager: true,
-          singleton: true,
-        },
-        "react-dom": {
-          // eager: true,
-          singleton: true,
-        },
-        "react-router-dom": {
-          // eager: true,
-          singleton: true,
-        },
-        'styled-components': {
-          // eager: true,
-          singleton: true,
-        },
-        // Racine can be shared once react-virtualized is bumped
-        // There is a circular dependency in our version
-        // Ian has a PR out https://github.com/sproutsocial/racine/pull/1443
-        // '@sproutsocial/racine': {
-        //   // eager: true,
-        //   singleton: true,
-        // },
-      },
-    }),
-    new ExternalTemplateRemotesPlugin(),
     new HtmlWebpackPlugin({
       template: './public/index.html',
       chunks: ['main'],
