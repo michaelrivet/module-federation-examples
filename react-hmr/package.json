@@ -8,14 +8,45 @@
   "license": "MIT",
   "private": true,
   "workspaces": [
-      "packages/*",
-      "pages/*"
+      "packages/*"
   ],
   "scripts": {
-    "start-agent-workspace": "concurrently \"cd pages/agent_workspace; yarn start\"",
-    "start-listening": "concurrently \"cd pages/listening; yarn start\""
+    "build": "webpack --mode production",
+    "start": "webpack serve"
   },
   "devDependencies": {
-    "concurrently": "7.3.0"
+    "@babel/core": "7.18.9",
+    "@babel/preset-react": "7.18.6",
+    "@pmmmwh/react-refresh-webpack-plugin": "0.5.7",
+    "babel-loader": "8.2.5",
+    "circular-dependency-plugin": "^5.2.2",
+    "concurrently": "7.3.0",
+    "css-loader": "^6.5.1",
+    "html-webpack-plugin": "5.5.0",
+    "react-refresh": "0.13.0",
+    "style-loader": "^3.3.1",
+    "webpack": "5.72.1",
+    "webpack-cli": "4.10.0",
+    "webpack-dev-server": "4.9.3"
+  },
+  "dependencies": {
+    "@sproutsocial/racine": "^6.18.0",
+    "@sproutsocial/seeds-border": "^1.1.1",
+    "@sproutsocial/seeds-color": "^1.5.3",
+    "@sproutsocial/seeds-dataviz": "^0.5.4",
+    "@sproutsocial/seeds-depth": "^1.1.4",
+    "@sproutsocial/seeds-motion": "^1.2.2",
+    "@sproutsocial/seeds-networkcolor": "^2.6.2",
+    "@sproutsocial/seeds-space": "^0.4.9",
+    "@sproutsocial/seeds-typography": "^3.1.0",
+    "@sproutsocial/topology": "^1.2.0",
+    "cases": "*",
+    "layout": "*",
+    "moment": "^2.29.1",
+    "react": "^16.14.0",
+    "react-dates": "^21.8.0",
+    "react-dom": "^16.14.0",
+    "react-router-dom": "^5.3.0",
+    "styled-components": "5.3.0"
   }
 }

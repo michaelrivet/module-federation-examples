@@ -8,7 +8,10 @@ const STYLE_LOADER = {
 };
 
 module.exports = {
-  entry: './src/index',
+  entry: {
+    listening: './monolith/pages/listening/index',
+    agent_workspace: './monolith/pages/agent_workspace/index'
+  },
   mode: 'development',
   devtool: 'source-map',
   optimization: {
@@ -46,7 +49,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
-      chunks: ['main'],
+      chunks: ['agent_workspace'],
     }),
     new ReactRefreshWebpackPlugin({
       exclude: [/node_modules/, /bootstrap\.js$/],

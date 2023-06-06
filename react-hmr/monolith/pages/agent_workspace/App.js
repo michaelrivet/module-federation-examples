@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import {caseLog} from 'cases';
 import {Layout} from 'layout';
+import { pollinate } from '../../core/pollinator';
 
 const App = () => {
   const [counter, setCounter] = useState(0);
   useEffect(() => {
+    pollinate();
     caseLog();
   }, []);
 
