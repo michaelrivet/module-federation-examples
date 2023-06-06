@@ -19,7 +19,7 @@ module.exports = {
   devServer: {
     hot: true,
     static: path.join(__dirname, 'dist'),
-    port: 3003,
+    port: 3001,
     liveReload: false,
     headers: {
       "Access-Control-Allow-Origin": "*",
@@ -47,15 +47,15 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'remote2',
+      name: 'agent_workspace',
       filename: 'remoteEntry.js',
       exposes: {
-        './Button': './src/Button',
-        './Heading': './src/Heading',
-        './App': './src/App',
+        './App': './src/App'
       },
       remotes: {
         libs: 'libs@[libsUrl]/remoteEntry.js',
+        cases: 'cases@[casesUrl]/remoteEntry.js',
+        layout: 'layout@[layoutUrl]/remoteEntry.js',
       },
       shared: {
         "moment": {

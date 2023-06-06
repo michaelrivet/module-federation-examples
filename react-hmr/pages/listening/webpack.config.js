@@ -1,8 +1,8 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExternalTemplateRemotesPlugin = require('external-remotes-plugin');
 const path = require('path');
-const LiveReloadPlugin = require('webpack-livereload-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const STYLE_LOADER = {
 	test: /\.css$/i,
@@ -17,11 +17,14 @@ module.exports = {
     minimize: false,
   },
   devServer: {
-    hot: false,
+    hot: true,
     static: path.join(__dirname, 'dist'),
-    port: 3000,
-    historyApiFallback: {
-      index: 'index.html',
+    port: 3003,
+    liveReload: false,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
     },
   },
   output: {
@@ -36,6 +39,7 @@ module.exports = {
         exclude: /node_modules/,
         options: {
           presets: ['@babel/preset-react'],
+          plugins: [require.resolve('react-refresh/babel')],
         },
       },
       STYLE_LOADER,
@@ -43,10 +47,14 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'host',
+      name: 'listening',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './Button': './src/Button',
+        './Heading': './src/Heading',
+        './App': './src/App',
+      },
       remotes: {
-        remote1: 'remote1@[remote1Url]/remoteEntry.js',
-        remote2: 'remote2@[remote2Url]/remoteEntry.js',
         libs: 'libs@[libsUrl]/remoteEntry.js',
       },
       shared: {
@@ -82,9 +90,10 @@ module.exports = {
     new ExternalTemplateRemotesPlugin(),
     new HtmlWebpackPlugin({
       template: './public/index.html',
+      chunks: ['main'],
     }),
-    new LiveReloadPlugin({
-      port: 35729,
+    new ReactRefreshWebpackPlugin({
+      exclude: [/node_modules/, /bootstrap\.js$/],
     }),
   ],
 };
